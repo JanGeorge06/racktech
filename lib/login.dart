@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:racktech/register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -19,7 +20,10 @@ class LoginPageScreen extends State<LoginPage> {
             SizedBox(
               height: MediaQuery.sizeOf(context).height/1.5,
               width: MediaQuery.sizeOf(context).width-40,
-              child: Image.asset("images/racktech.png",width: 50,height: 100,),
+              child: Hero(
+                tag: "racktech",
+                child: Image.asset("images/racktech.png"),
+              )
             ),
             const Text("Welcome to RackTech Shop",style: TextStyle(
               fontSize:45,
@@ -59,13 +63,18 @@ class LoginPageScreen extends State<LoginPage> {
               height: 10,
             ),
              Center(
-              child: RichText(
-                text: const TextSpan(
-                  children:<TextSpan> [
-                    TextSpan(text: "Don't have an account?",style: TextStyle(color: Colors.white)),
-                    TextSpan(text: "  Register now!",style: TextStyle(color: Colors.blue)),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> RegisterPage()));
+                },
+                child: RichText(
+                  text: const TextSpan(
+                      children:<TextSpan> [
+                        TextSpan(text: "Don't have an account?",style: TextStyle(color: Colors.white)),
+                        TextSpan(text: "  Register now!",style: TextStyle(color: Colors.blue)),
 
-                  ]
+                      ]
+                  ),
                 ),
               )
             )
