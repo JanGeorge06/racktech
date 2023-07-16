@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:racktech/register.dart';
+import 'package:racktech/SignIn.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -37,14 +38,14 @@ class LoginPageScreen extends State<LoginPage> {
               height: 60,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.white, // Set the background color to white
-                  onPrimary: Colors.black, // Set the text color to black
+                  primary: Colors.black, // Set the background color to white
+                  onPrimary: Colors.white, // Set the text color to black
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0), // Set the corner radius
                   ),
                 ),
                 onPressed: () {
-
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> SignIn()));
                   },
                 child: Text('Login',style: TextStyle(fontSize: 25),),
               ),
