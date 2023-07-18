@@ -57,7 +57,7 @@ class RegisterPageScreen extends State<RegisterPage> {
       Navigator.pop(context);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => Homepage(),
+        MaterialPageRoute(builder: (context) => MyApp(),
       ));
       // Process the response
       print(response.data);

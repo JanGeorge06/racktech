@@ -1,0 +1,58 @@
+ drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Color(0xFF1B1919)),
+              child: Text(
+                'Hello \n${email}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text(
+                'Home',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.shopping_cart_rounded),
+              title: Text(
+                'My orders',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                // Handle drawer item click
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text(
+                'Settings',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                // Handle drawer item click
+              },
+            ),
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height/10,
+            ),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text("Sign Out",style: TextStyle(fontSize: 20),),
+              onTap: () {
+                deleteUserToken();
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));
+              },
+            )
+          ],
+        ),
+      ),
