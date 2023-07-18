@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:racktech/homepage.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 class SignIn extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -18,53 +18,51 @@ class SignInScreen extends State<SignIn> {
   bool passwordEmpty = false;
   bool usernameEmpty = false;
 
+  bool isLoading = false;
+
+
   // sign user in method
   // sign user in method
   Dio dio = Dio();
   // sign user in method
   Future<void> sendPostRequest() async {
-
     setState(() {
       usernameEmpty = usernameController.text.isEmpty;
       passwordEmpty = passwordController.text.isEmpty;
+      isLoading = true; // Add isLoading variable
     });
-    if (!usernameEmpty && !passwordEmpty) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return const Center (
-            child: CircularProgressIndicator(),
-          );
-        },
-      );
-    }
+
     try {
       var response = await dio.post(
         'http://10.0.2.2:5000/login',
         data: {
-          "email":usernameController.text,
-          "password":passwordController.text,
+          "email": usernameController.text,
+          "password": passwordController.text,
         },
       );
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => MyApp()),
-      );
+
+      if (response.statusCode == 200) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MyApp()),
+        );
+      }
+
       // Process the response
       print(response.data);
       String token = response.data['token'];
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', token);
-
-
     } catch (e) {
       if (!usernameEmpty && !passwordEmpty) {
         Navigator.pop(context);
       }
       print('Error: $e');
+    } finally {
+      setState(() {
+        isLoading = false; // Set isLoading to false after request completion
+      });
     }
-
   }
 
 
@@ -149,7 +147,8 @@ class SignInScreen extends State<SignIn> {
                     onPressed: () {
                       sendPostRequest();
                     },
-                    child: Text('Login',style: TextStyle(fontSize: 25),),
+                    child: isLoading ?  SpinKitThreeInOut(color: Colors.white,size: 20,)
+                        : Text('Login',style: TextStyle(fontSize: 25),),
                   ),
                 ),
               ]

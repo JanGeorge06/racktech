@@ -70,9 +70,7 @@ class HomepageScreen extends State<Homepage> {
     });
   }
 
-  void _openDrawer(BuildContext context) {
-    _scaffoldKey.currentState?.openDrawer();
-  }
+
 
   @override
   Widget build(BuildContext context) {
