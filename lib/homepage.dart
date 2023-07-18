@@ -1,7 +1,56 @@
+import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:racktech/login.dart';
+import 'package:floating_navbar/floating_navbar.dart';
+
+
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: FloatingNavBar(
+        horizontalPadding: 10.0,
+        hapticFeedback: true,
+        resizeToAvoidBottomInset: false,
+        color: Colors.black,
+        items: [
+          FloatingNavBarItem(
+            iconData: Icons.home,
+            title: 'Home',
+            page: Homepage(),
+          ),
+          FloatingNavBarItem(
+            iconData: Icons.explore,
+            title: 'Explore',
+            page: Homepage(),
+          ),
+          FloatingNavBarItem(
+            iconData: Icons.shopping_cart_rounded,
+            title: 'Cart',
+            page: Homepage(),
+          ),
+          FloatingNavBarItem(
+            iconData: Icons.account_circle,
+            title: 'Account',
+            page: Homepage(),
+          )
+        ],
+        selectedIconColor: Colors.white,
+      ),
+    );
+  }
+}
+
+
 
 class Homepage extends StatefulWidget {
   @override
