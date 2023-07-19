@@ -81,6 +81,7 @@ class ProfileScreen extends State<Profile> {
       // Update the UI with the user details
       setState(() {
         userDetails = user;
+        emailController.text=user.email;
       });
     } catch (e) {
       // Handle any error that occurs during the request
@@ -91,6 +92,7 @@ class ProfileScreen extends State<Profile> {
 
   User? userDetails;
 
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,7 +120,7 @@ class ProfileScreen extends State<Profile> {
               padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: Card(
-                  color: Colors.white,
+                  color: Colors.black,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -128,6 +130,7 @@ class ProfileScreen extends State<Profile> {
                          child:  Text(
                            'User Details',
                            style: TextStyle(
+                             color: Colors.white,
                              fontSize: 18.0,
                              fontWeight: FontWeight.bold,
                            ),
@@ -138,30 +141,70 @@ class ProfileScreen extends State<Profile> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'Email: ${userDetails!.email}',
-                                style: TextStyle(
-                                  fontSize: 16.0,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                                child: TextField(
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.mail_rounded),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20)
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.grey.shade400),
+                                    ),
+                                    fillColor: Colors.grey.shade300,
+                                    filled: true,
+                                    hintText: userDetails?.email,
+                                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                                  ),
                                 ),
                               ),
                               SizedBox(height: 5.0),
-                              Text(
-                                'Number: ${userDetails!.number}',
-                                style: TextStyle(
-                                  fontSize: 16.0,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                                child: TextField(
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.phone),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20)
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.grey.shade400),
+                                    ),
+                                    fillColor: Colors.grey.shade300,
+                                    filled: true,
+                                    hintText: userDetails?.number,
+                                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                                  ),
                                 ),
                               ),
                               SizedBox(height: 5.0),
-                              Text(
-                                'Company: ${userDetails!.company}',
-                                style: TextStyle(
-                                  fontSize: 16.0,
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                                child: TextField(
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    prefixIcon: Icon(Icons.business_rounded),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(20)
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.grey.shade400),
+                                    ),
+                                    fillColor: Colors.grey.shade300,
+                                    filled: true,
+                                    hintText: userDetails?.email,
+                                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                                  ),
                                 ),
                               ),
+                              SizedBox(height: 5.0),
                             ],
                           ),
                         if (userDetails == null)
-                          SpinKitThreeInOut(color: Colors.black,size: 20,)
+                          SpinKitThreeInOut(color: Colors.white,size: 20,)
                       ],
                     ),
                   ),
@@ -176,7 +219,7 @@ class ProfileScreen extends State<Profile> {
               height: 60,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.red, // Set the background color to white
+                  primary: Colors.black, // Set the background color to white
                   onPrimary: Colors.white, // Set the text color to black
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0), // Set the corner radius
@@ -191,7 +234,7 @@ class ProfileScreen extends State<Profile> {
                     )
                   );
                   },
-                child: Text('Sign Out',style: TextStyle(fontSize: 25),),
+                child: Text('Log Out',style: TextStyle(fontSize: 25),),
               ),
             ),
           ],
