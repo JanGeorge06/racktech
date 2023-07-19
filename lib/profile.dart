@@ -195,7 +195,7 @@ class ProfileScreen extends State<Profile> {
                                     ),
                                     fillColor: Colors.grey.shade300,
                                     filled: true,
-                                    hintText: userDetails?.email,
+                                    hintText: userDetails?.company,
                                     hintStyle: TextStyle(color: Colors.grey.shade500),
                                   ),
                                 ),
