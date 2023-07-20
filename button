@@ -1,0 +1,42 @@
+Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.sizeOf(context).width/2-50,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.lightBlue, // Set the background color to white
+                        onPrimary: Colors.white, // Set the text color to black
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Set the corner radius
+                        ),
+                      ),
+                      onPressed: () {
+
+                      },
+                      child: Text('Edit',style: TextStyle(fontSize: 25),),
+                    ),
+                  ),
+                  SizedBox(width: 15,),
+                  Container(
+                    width: MediaQuery.sizeOf(context).width/2-50,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.lightGreen, // Set the background color to white
+                        onPrimary: Colors.white, // Set the text color to black
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0), // Set the corner radius
+                        ),
+                      ),
+                      onPressed: () {
+
+                      },
+                      child: Text('Save',style: TextStyle(fontSize: 25),),
+                    ),
+                  ),
+                ],
+              ),
+            ),

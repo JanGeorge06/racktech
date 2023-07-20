@@ -115,111 +115,110 @@ class ProfileScreen extends State<Profile> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            SizedBox(height: 20,),
+            Center(
+              child:  Text(
+                'Profile',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             SizedBox(height: 50,),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center(
-                child: Card(
-                  color: Colors.black,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                       Center(
-                         child:  Text(
-                           'User Details',
-                           style: TextStyle(
-                             color: Colors.white,
-                             fontSize: 18.0,
-                             fontWeight: FontWeight.bold,
-                           ),
-                         ),
-                       ),
-                        SizedBox(height: 10.0),
-                        if (userDetails != null)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                child: TextField(
-                                  enabled: false,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(Icons.mail_rounded),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.grey.shade400),
-                                    ),
-                                    fillColor: Colors.grey.shade300,
-                                    filled: true,
-                                    hintText: userDetails?.email,
-                                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10.0),
+                      if (userDetails != null)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width:MediaQuery.sizeOf(context).width-50,
+                              child: TextField(
+                                enabled: false,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.mail_rounded),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20)
                                   ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey.shade400),
+                                  ),
+                                  fillColor: Colors.grey.shade300,
+                                  filled: true,
+
+                                  hintText: userDetails?.email,
+                                  hintStyle: TextStyle(color: Colors.black),
                                 ),
                               ),
-                              SizedBox(height: 5.0),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                child: TextField(
-                                  enabled: false,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(Icons.phone),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.grey.shade400),
-                                    ),
-                                    fillColor: Colors.grey.shade300,
-                                    filled: true,
-                                    hintText: userDetails?.number,
-                                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                            ),
+                            SizedBox(height: 15.0),
+                            Container(
+                              width: MediaQuery.sizeOf(context).width-50,
+                              child: TextField(
+                                enabled: false,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.phone),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20)
                                   ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey.shade400),
+                                  ),
+                                  fillColor: Colors.grey.shade300,
+                                  filled: true,
+                                  hintText: userDetails?.number,
+                                  hintStyle: TextStyle(color: Colors.black),
                                 ),
                               ),
-                              SizedBox(height: 5.0),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                                child: TextField(
-                                  enabled: false,
-                                  decoration: InputDecoration(
-                                    prefixIcon: Icon(Icons.business_rounded),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20)
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.grey.shade400),
-                                    ),
-                                    fillColor: Colors.grey.shade300,
-                                    filled: true,
-                                    hintText: userDetails?.company,
-                                    hintStyle: TextStyle(color: Colors.grey.shade500),
+                            ),
+                            SizedBox(height: 15.0),
+                            Container(
+                              width: MediaQuery.sizeOf(context).width-50,
+                              child: TextField(
+                                enabled: false,
+                                decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.business_rounded),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(20)
                                   ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey.shade400),
+                                  ),
+                                  fillColor: Colors.grey.shade300,
+                                  filled: true,
+                                  hintText: userDetails?.company,
+                                  hintStyle: TextStyle(color: Colors.black),
                                 ),
                               ),
-                              SizedBox(height: 5.0),
-                            ],
-                          ),
-                        if (userDetails == null)
-                          SpinKitThreeInOut(color: Colors.white,size: 20,)
-                      ],
-                    ),
+                              ),
+                            SizedBox(height: 15.0),
+                          ],
+                        ),
+                      if (userDetails == null)
+                        SpinKitThreeInOut(color: Colors.white,size: 20,)
+                    ],
                   ),
                 ),
               ),
             ),
             SizedBox(
-              height: 150,
+              height: 100,
             ),
             Container(
-              width: MediaQuery.sizeOf(context).width-50,
+              width: MediaQuery.sizeOf(context).width-75,
               height: 60,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black, // Set the background color to white
+                  primary: Colors.red, // Set the background color to white
                   onPrimary: Colors.white, // Set the text color to black
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0), // Set the corner radius

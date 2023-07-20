@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       home: FloatingNavBar(
         horizontalPadding: 10.0,
-        hapticFeedback: true,
+        hapticFeedback: false,
         resizeToAvoidBottomInset: false,
         color: Colors.black,
         items: [
