@@ -1,3 +1,5 @@
+//import 'dart:js_util';
+
 import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,6 +8,7 @@ import 'package:racktech/login.dart';
 import 'package:floating_navbar/floating_navbar.dart';
 import 'package:racktech/profile.dart';
 import 'package:racktech/Token.dart';
+import 'package:racktech/components/toggleswitch.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -60,6 +63,8 @@ class Homepage extends StatefulWidget {
 }
 
 class HomepageScreen extends State<Homepage> {
+  int selectedIndex = 0;
+  bool firstpage = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -70,7 +75,9 @@ class HomepageScreen extends State<Homepage> {
     });
   }
 
-
+  void _openDrawer(BuildContext context) {
+    _scaffoldKey.currentState?.openDrawer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,8 +100,66 @@ class HomepageScreen extends State<Homepage> {
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [],
+          children: [
+            SizedBox(height: 50,),
+            Center(
+              child: ToggleButton(width: 250,
+                  height: 60,
+                  toggleBackgroundColor: Colors.transparent,
+                  toggleBorderColor: Colors.transparent,
+                  toggleColor: Colors.lightBlueAccent,
+                  activeTextColor: Colors.white,
+                  inactiveTextColor: Colors.grey,
+                  leftDescription: "Best Seller",
+                  rightDescription: "New Products",
+                  onLeftToggleActive: (){
+                   //firstpage = true;
+                  },
+                  onRightToggleActive: (){
+                  //firstpage =false;
+                  },
+              ),
+            ),
+            Expanded(
+                child:firstpage == true
+                ? Page1()
+                : Page2()
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+class Page1 extends StatefulWidget {
+  @override
+  _Page1State createState() => _Page1State();
+}
+
+class _Page1State extends State<Page1> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      child: Center(
+        child: Text('Page 1'),
+      ),
+    );
+  }
+}
+
+class Page2 extends StatefulWidget {
+  @override
+  _Page2State createState() => _Page2State();
+}
+
+class _Page2State extends State<Page2> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.blue,
+      child: Center(
+        child: Text('Page 2'),
       ),
     );
   }
