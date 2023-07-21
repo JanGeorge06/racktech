@@ -190,7 +190,7 @@ class _Page1State extends State<Page1> {
               ),
               child: Container(
                 alignment: Alignment.topRight,
-                padding: EdgeInsets.all(10.0),
+                //padding: EdgeInsets.all(10.0),
                   height: 260,
                   width: 140,
                   //transformAlignment: Alignment.topRight,
