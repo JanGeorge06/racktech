@@ -189,9 +189,10 @@ class _Page1State extends State<Page1> {
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Container(
-                //padding: EdgeInsets.all(10.0),
+                alignment: Alignment.topRight,
+                padding: EdgeInsets.all(10.0),
                   height: 260,
-                  width: 130,
+                  width: 140,
                   //transformAlignment: Alignment.topRight,
                   child: Column(
                     children: [
