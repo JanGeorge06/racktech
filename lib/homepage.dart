@@ -9,6 +9,7 @@ import 'package:floating_navbar/floating_navbar.dart';
 import 'package:racktech/profile.dart';
 import 'package:racktech/Token.dart';
 import 'package:racktech/components/toggleswitch.dart';
+import 'package:racktech/productdetails.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -53,7 +54,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class PhotoItem {
+  final String image;
+  final String name;
+  final String price;
+  PhotoItem(this.image, this.name,this.price);
+}
 
+final List<PhotoItem> _items = [
+  PhotoItem(
+      "https://images.pexels.com/photos/1772973/pexels-photo-1772973.png?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Mountains","200"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+];
 
 class Homepage extends StatefulWidget {
   @override
@@ -148,17 +163,17 @@ class HomepageScreen extends State<Homepage> {
     );
   }
 }
-
-List<String> images = [
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-];
-
+/////////// SECOND CODEEE ////////////////
+// List<String> images = [
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+// ];
+////////////// END OF SECOND CODE ////////////
 class Page1 extends StatefulWidget {
   @override
   _Page1State createState() => _Page1State();
@@ -174,36 +189,67 @@ class _Page1State extends State<Page1> {
       //),
       padding: EdgeInsets.all(12.0),
       child: GridView.builder(
-          itemCount: images.length,
+          itemCount: _items.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 4.0,
             mainAxisSpacing: 4.0,
           ),
           itemBuilder: (BuildContext context, int index){
-            //return Image.network(images[index]);
-            return Container(
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.amber,
-                borderRadius: BorderRadius.circular(30),
-              ),
+            return new GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => productdetails(
+                        image: _items[index].image,
+                        name: _items[index].name,
+                        price: _items[index].price),
+                  ),
+                );
+              },
               child: Container(
-                alignment: Alignment.topRight,
-                //padding: EdgeInsets.all(10.0),
-                  height: 260,
-                  width: 140,
-                  //transformAlignment: Alignment.topRight,
-                  child: Column(
-                    children: [
-                      Image.network(images[index]),
-                      SizedBox(height: 20,),
-                      Text("data")
-                    ],
-                  )
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(_items[index].image),
+                  ),
+                ),
               ),
-              //child: Text("Products"),
             );
+            ////////////THE SECOND CODE////////////////
+            //return Image.network(images[index]);
+            // return Container(
+            //   alignment: Alignment.center,
+            //   decoration: BoxDecoration(
+            //     color: Colors.amber,
+            //     borderRadius: BorderRadius.circular(30),
+            //   ),
+            //   child: Container(
+            //     alignment: Alignment.center,
+            //     //padding: EdgeInsets.all(10.0),
+            //       //height: 260,
+            //       //width: 140,
+            //       //transformAlignment: Alignment.topRight,
+            //       child: Column(
+            //         children: [
+            //           Container(
+            //             //height: 120,
+            //             width: 130,
+            //             child: Image.network(images[index]),
+            //           ),
+            //           SizedBox(height: 20,),
+            //           Container(
+            //             child: Text("Data",textScaleFactor: 1.4,),
+            //
+            //           ),
+            //           //Text("data")
+            //         ],
+            //       )
+            //   ),
+            //   //child: Text("Products"),
+            // );
+            /////////////END OF THR SECOND CODE//////////////////
           },
       ),
     );
