@@ -101,14 +101,14 @@ class HomepageScreen extends State<Homepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(height: 50,),
+            SizedBox(height: 20,),
             Center(
-              child: ToggleButton(width: 250,
-                  height: 60,
-                  toggleBackgroundColor: Colors.transparent,
-                  toggleBorderColor: Colors.transparent,
-                  toggleColor: Colors.lightBlueAccent,
-                  activeTextColor: Colors.white,
+              child: ToggleButton(width: 200,
+                  height: 50,
+                  toggleBackgroundColor: Colors.black,
+                  toggleBorderColor: Colors.black,
+                  toggleColor: Colors.white,
+                  activeTextColor: Colors.black,
                   inactiveTextColor: Colors.grey,
                   leftDescription: "Best Seller",
                   rightDescription: "New Products",
@@ -124,17 +124,41 @@ class HomepageScreen extends State<Homepage> {
                   },
               ),
             ),
-            Expanded(
-                child:firstpage
-                ? Page2()
-                : Page1()
+            Column(
+              children: [
+                LimitedBox(
+                  maxHeight: 545,
+                  maxWidth: 200,
+                  child: Container(
+                    child: firstpage
+                        ? Page2()
+                        :Page1()
+                  ),
+                )
+              ],
             ),
+            // Expanded(
+            //     child:firstpage
+            //     ? Page2()
+            //     : Page1()
+            // ),
           ],
         ),
       ),
     );
   }
 }
+
+List<String> images = [
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+  "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
+];
+
 class Page1 extends StatefulWidget {
   @override
   _Page1State createState() => _Page1State();
@@ -144,9 +168,42 @@ class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
-      child: Center(
-        child: Text('Page 1'),
+      // color: Colors.red,
+      // child: Center(
+      //   child: Text('Page 1'),
+      //),
+      padding: EdgeInsets.all(12.0),
+      child: GridView.builder(
+          itemCount: images.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 4.0,
+            mainAxisSpacing: 4.0,
+          ),
+          itemBuilder: (BuildContext context, int index){
+            //return Image.network(images[index]);
+            return Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.amber,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Container(
+                //padding: EdgeInsets.all(10.0),
+                  height: 260,
+                  width: 130,
+                  //transformAlignment: Alignment.topRight,
+                  child: Column(
+                    children: [
+                      Image.network(images[index]),
+                      SizedBox(height: 20,),
+                      Text("data")
+                    ],
+                  )
+              ),
+              //child: Text("Products"),
+            );
+          },
       ),
     );
   }
