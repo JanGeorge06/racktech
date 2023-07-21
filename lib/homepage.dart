@@ -196,7 +196,7 @@ class _Page1State extends State<Page1> {
             mainAxisSpacing: 4.0,
           ),
           itemBuilder: (BuildContext context, int index){
-            return new GestureDetector(
+            return GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
@@ -209,9 +209,13 @@ class _Page1State extends State<Page1> {
                 );
               },
               child: Container(
+                alignment: Alignment.center,
                 decoration: BoxDecoration(
+                  color: Colors.amber,
+                  borderRadius: BorderRadius.circular(30),
                   image: DecorationImage(
-                    fit: BoxFit.cover,
+                    fit: BoxFit.values.last,
+                    alignment: Alignment.topCenter,
                     image: NetworkImage(_items[index].image),
                   ),
                 ),
