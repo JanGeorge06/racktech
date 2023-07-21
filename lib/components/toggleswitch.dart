@@ -86,10 +86,9 @@ class _ToggleButtonState extends State<ToggleButton> {
             onTap: () {
               setState(
                     () {
-                  //Page1()  ;
-                  _toggleXAlign = widget._rightToggleAlign;
-                  _leftDescriptionColor = widget.inactiveTextColor;
-                  _rightDescriptionColor = widget.activeTextColor;
+                      _toggleXAlign = widget._leftToggleAlign;
+                      _leftDescriptionColor = widget.activeTextColor;
+                      _rightDescriptionColor = widget.inactiveTextColor;
                 },
               );
 
@@ -114,10 +113,9 @@ class _ToggleButtonState extends State<ToggleButton> {
             onTap: () {
               setState(
                     () {
-                  _toggleXAlign = widget._leftToggleAlign;
-                  //Page2();
-                  _leftDescriptionColor = widget.activeTextColor;
-                  _rightDescriptionColor = widget.inactiveTextColor;
+                  _toggleXAlign = widget._rightToggleAlign;
+                  _leftDescriptionColor = widget.inactiveTextColor;
+                  _rightDescriptionColor = widget.activeTextColor;
                 },
               );
 

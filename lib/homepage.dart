@@ -113,17 +113,21 @@ class HomepageScreen extends State<Homepage> {
                   leftDescription: "Best Seller",
                   rightDescription: "New Products",
                   onLeftToggleActive: (){
-                   firstpage = true;
+                  setState(() {
+                    firstpage = true;
+                  });
                   },
                   onRightToggleActive: (){
-                   firstpage =false;
+                setState(() {
+                  firstpage =false;
+                });
                   },
               ),
             ),
             Expanded(
                 child:firstpage
-                ? Page1()
-                : Page2()
+                ? Page2()
+                : Page1()
             ),
           ],
         ),
