@@ -209,7 +209,7 @@ class _Page1State extends State<Page1> {
                 );
               },
               child: Container(
-                alignment: Alignment.center,
+                //alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   borderRadius: BorderRadius.circular(30),
@@ -218,6 +218,17 @@ class _Page1State extends State<Page1> {
                     alignment: Alignment.topCenter,
                     image: NetworkImage(_items[index].image),
                   ),
+                ),
+                //alignment: Alignment.bottomRight,
+                child: Row(
+                  children: [
+                     Padding(
+                       padding: const EdgeInsets.fromLTRB(30.0, 125.0, 0, 10.0),
+                       child: Text(_items[index].name,
+                         style: TextStyle(fontSize: 19) ,),
+                     ),
+                    //Text(_items[index].price),
+                  ],
                 ),
               ),
             );
