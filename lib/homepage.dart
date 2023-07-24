@@ -2,6 +2,7 @@
 
 import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:racktech/login.dart';
@@ -15,42 +16,71 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: FloatingNavBar(
-        horizontalPadding: 10.0,
-        hapticFeedback: false,
-        resizeToAvoidBottomInset: false,
-        color: Colors.black,
-        items: [
-          FloatingNavBarItem(
-            iconData: Icons.home,
-            title: 'Home',
-            page: Homepage(),
+    return WillPopScope(
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
           ),
-          FloatingNavBarItem(
-            iconData: Icons.explore,
-            title: 'Explore',
-            page: Homepage(),
+          home: FloatingNavBar(
+            horizontalPadding: 10.0,
+            hapticFeedback: false,
+            resizeToAvoidBottomInset: false,
+            color: Colors.black,
+            items: [
+              FloatingNavBarItem(
+                iconData: Icons.home,
+                title: 'Home',
+                page: Homepage(),
+              ),
+              FloatingNavBarItem(
+                iconData: Icons.explore,
+                title: 'Explore',
+                page: Homepage(),
+              ),
+              FloatingNavBarItem(
+                iconData: Icons.shopping_cart_rounded,
+                title: 'Cart',
+                page: Homepage(),
+              ),
+              FloatingNavBarItem(
+                iconData: Icons.account_circle,
+                title: 'Account',
+                page: Profile(),
+              )
+            ],
+            selectedIconColor: Colors.white,
           ),
-          FloatingNavBarItem(
-            iconData: Icons.shopping_cart_rounded,
-            title: 'Cart',
-            page: Homepage(),
-          ),
-          FloatingNavBarItem(
-            iconData: Icons.account_circle,
-            title: 'Account',
-            page: Profile(),
-          )
-        ],
-        selectedIconColor: Colors.white,
-      ),
-    );
+        ),
+        onWillPop: () async {
+          return await showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Confirm Exit"),
+                  content: Text("Are you sure you want to exit?"),
+                  actions: <Widget>[
+                    TextButton(
+                      child: Text("YES"),
+                      onPressed: () {
+                        SystemNavigator.pop();
+                      },
+                    ),
+                    TextButton(
+                      child: Text("NO"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    )
+                  ],
+                );
+              }
+          );
+          return Future.value(true);
+        }
+        );
   }
 }
 
@@ -90,9 +120,6 @@ class HomepageScreen extends State<Homepage> {
     });
   }
 
-  void _openDrawer(BuildContext context) {
-    _scaffoldKey.currentState?.openDrawer();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,24 +146,24 @@ class HomepageScreen extends State<Homepage> {
             SizedBox(height: 20,),
             Center(
               child: ToggleButton(width: 200,
-                  height: 50,
-                  toggleBackgroundColor: Colors.black,
-                  toggleBorderColor: Colors.black,
-                  toggleColor: Colors.white,
-                  activeTextColor: Colors.black,
-                  inactiveTextColor: Colors.grey,
-                  leftDescription: "Best Seller",
-                  rightDescription: "New Products",
-                  onLeftToggleActive: (){
+                height: 50,
+                toggleBackgroundColor: Colors.black,
+                toggleBorderColor: Colors.black,
+                toggleColor: Colors.white,
+                activeTextColor: Colors.black,
+                inactiveTextColor: Colors.grey,
+                leftDescription: "Best Seller",
+                rightDescription: "New Products",
+                onLeftToggleActive: () {
                   setState(() {
                     firstpage = true;
                   });
-                  },
-                  onRightToggleActive: (){
-                setState(() {
-                  firstpage =false;
-                });
-                  },
+                },
+                onRightToggleActive: () {
+                  setState(() {
+                    firstpage = false;
+                  });
+                },
               ),
             ),
             Column(
@@ -145,9 +172,9 @@ class HomepageScreen extends State<Homepage> {
                   maxHeight: 545,
                   maxWidth: 200,
                   child: Container(
-                    child: firstpage
-                        ? Page2()
-                        :Page1()
+                      child: firstpage
+                          ? Page2()
+                          : Page1()
                   ),
                 )
               ],
@@ -225,7 +252,7 @@ class _Page1State extends State<Page1> {
                      Padding(
                        padding: const EdgeInsets.fromLTRB(30.0, 125.0, 0, 10.0),
                        child: Text(_items[index].name,
-                         style: TextStyle(fontSize: 19) ,),
+                         style: TextStyle(fontSize: 19),),
                      ),
                     //Text(_items[index].price),
                   ],

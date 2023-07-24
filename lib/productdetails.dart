@@ -14,7 +14,6 @@ class productdetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF1B1919),
-        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Hero(
           tag: "racktech",

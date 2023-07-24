@@ -55,7 +55,6 @@ class SignInScreen extends State<SignIn> {
       await prefs.setString('token', token);
     } catch (e) {
       if (!usernameEmpty && !passwordEmpty) {
-        Navigator.pop(context);
       }
       print('Error: $e');
     } finally {
