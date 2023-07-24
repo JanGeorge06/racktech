@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:racktech/category.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'ProductModel.dart';
 
-class category_product extends StatefulWidget{
-  late String category;
+class CategoryProduct extends StatefulWidget {
+  final String category;
 
-  category_product({super.key,required this.category});
+  CategoryProduct({required this.category});
+
   @override
   State<StatefulWidget> createState() {
-    return cat_product(category);
+    return _CategoryProductState();
   }
 }
 
-class cat_product extends State<category_product>{
-  late String category;
-
-  cat_product(this.category);
-
+class _CategoryProductState extends State<CategoryProduct> {
   Dio dio = Dio();
-
-  var products;
+  late List<Product> products;
+  bool isLoading = true;
+  bool isError = false;
 
   Future<void> sendGetRequest() async {
-    Map<String, dynamic> queryParams = {
-      'category': category
-    };
-
+    Map<String, dynamic> queryParams = {'category': widget.category};
     String url = 'http://10.0.2.2:5000/products';
 
     try {
@@ -38,10 +33,15 @@ class cat_product extends State<category_product>{
           name: json['name'] as String,
           image: json['image'] as String,
         )).toList();
-        print(products); // move the print statement here
+        isLoading = false;
+        isError = false;
       });
     } catch (e) {
       print(e.toString());
+      setState(() {
+        isLoading = false;
+        isError = true;
+      });
     }
   }
 
@@ -50,6 +50,7 @@ class cat_product extends State<category_product>{
     super.initState();
     sendGetRequest();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,37 +67,34 @@ class cat_product extends State<category_product>{
         ),
       ),
       backgroundColor: Color(0xFF1B1919),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-          child: Container(
-            child:  GridView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemCount: products.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 4.0,
-                mainAxisSpacing: 4.0,
-                //mainAxisExtent: 400.0,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(30),
-                      image: DecorationImage(
-                        fit: BoxFit.values.last,
-                        alignment: Alignment.topCenter,
-                        image: NetworkImage(products[index].image),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          )
+      body: isLoading
+          ? Center(child: SpinKitThreeInOut(color: Colors.white,size:20,))
+          : isError
+          ? Center(child: Text('Error fetching products'))
+          : GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 6.0,
+          mainAxisSpacing: 6.0,
         ),
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              // Implement navigation to product details screen
+            },
+            child: Container(
+              child: ListTile(
+                title:Image.network(products[index].image, fit: BoxFit.cover),
+                subtitle: Text(products[index].name.toUpperCase(),style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold
+                ),),
+              )
+            ),
+          );
+        },
+      ),
     );
   }
 }

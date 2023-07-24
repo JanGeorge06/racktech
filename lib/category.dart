@@ -52,7 +52,7 @@ class categories extends State<categories_screen>{
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "indoor")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "indoor")));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class categories extends State<categories_screen>{
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "Outdoor")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "Outdoor")));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -138,7 +138,7 @@ class categories extends State<categories_screen>{
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "Accessories")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "Accessories")));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -181,7 +181,7 @@ class categories extends State<categories_screen>{
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "RTlink")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "RTlink")));
                     },
                     child: Container(
                       decoration: BoxDecoration(

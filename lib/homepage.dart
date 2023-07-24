@@ -186,7 +186,7 @@ class HomepageScreen extends State<Homepage> {
             Column(
               children: [
                 LimitedBox(
-                  maxHeight: 545,
+                  maxHeight: MediaQuery.sizeOf(context).height-250,
                   maxWidth: 200,
                   child: Container(
                       child: firstpage
