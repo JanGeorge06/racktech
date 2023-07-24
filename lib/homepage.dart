@@ -94,6 +94,27 @@ final List<PhotoItem> _items = [
   PhotoItem(
       "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
       "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
+  PhotoItem(
+      "https://images.pexels.com/photos/1758531/pexels-photo-1758531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Road","300"),
 ];
 
 class Homepage extends StatefulWidget {
@@ -215,8 +236,9 @@ class _Page1State extends State<Page1> {
           itemCount: _items.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            crossAxisSpacing: 4.0,
-            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 9.0,
+            mainAxisSpacing: 9.0,
+            mainAxisExtent: 200.0,
           ),
           itemBuilder: (BuildContext context, int index){
             return GestureDetector(

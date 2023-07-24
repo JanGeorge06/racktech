@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:racktech/category_product.dart';
 
 class categories_screen extends StatefulWidget{
   @override
@@ -50,6 +51,9 @@ class categories extends State<categories_screen>{
                 shrinkWrap: true,
                 children: [
                   GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "indoor")));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20)
@@ -90,6 +94,9 @@ class categories extends State<categories_screen>{
                     ),
                   ),
                   GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "Outdoor")));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20)
@@ -130,6 +137,9 @@ class categories extends State<categories_screen>{
                     ),
                   ),
                   GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "Accessories")));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20)
@@ -170,6 +180,9 @@ class categories extends State<categories_screen>{
                     ),
                   ),
                   GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => category_product(category: "RTlink")));
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20)
