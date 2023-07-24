@@ -11,6 +11,7 @@ import 'package:racktech/profile.dart';
 import 'package:racktech/Token.dart';
 import 'package:racktech/components/toggleswitch.dart';
 import 'package:racktech/productdetails.dart';
+import 'package:racktech/category.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -37,12 +38,7 @@ class MyApp extends StatelessWidget {
               FloatingNavBarItem(
                 iconData: Icons.explore,
                 title: 'Explore',
-                page: Homepage(),
-              ),
-              FloatingNavBarItem(
-                iconData: Icons.shopping_cart_rounded,
-                title: 'Cart',
-                page: Homepage(),
+                page: categories_screen(),
               ),
               FloatingNavBarItem(
                 iconData: Icons.account_circle,

@@ -66,6 +66,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - images/racktech.png
+     - images/indoor_rack.png
+     - images/cables.png
+     - images/fan.png
+     - images/outdoor_rack.png
+     - images/shelf.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
