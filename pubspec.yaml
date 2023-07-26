@@ -71,6 +71,11 @@ flutter:
      - images/fan.png
      - images/outdoor_rack.png
      - images/shelf.png
+     - images/fiber_accessories.png
+     - images/keystone.png
+     - images/shelf_accessories.png
+     - images/utp_cable.png
+     - images/optic_fiber.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

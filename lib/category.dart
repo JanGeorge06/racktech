@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:racktech/accessories_category.dart';
+import 'package:racktech/cable_categories.dart';
 import 'package:racktech/category_product.dart';
 
 class categories_screen extends StatefulWidget{
@@ -95,7 +97,7 @@ class categories extends State<categories_screen>{
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "Outdoor")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "outdoor")));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -138,7 +140,7 @@ class categories extends State<categories_screen>{
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "Accessories")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => accessories_screen()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -181,7 +183,7 @@ class categories extends State<categories_screen>{
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryProduct(category: "RTlink")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => cable_screen()));
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -229,5 +231,4 @@ class categories extends State<categories_screen>{
       ),
     );
   }
-
 }

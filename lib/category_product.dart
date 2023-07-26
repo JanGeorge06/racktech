@@ -72,10 +72,12 @@ class _CategoryProductState extends State<CategoryProduct> {
           : isError
           ? Center(child: Text('Error fetching products'))
           : GridView.builder(
+        shrinkWrap: true,
+        physics:BouncingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 6.0,
-          mainAxisSpacing: 6.0,
+          mainAxisSpacing: 20.0,
         ),
         itemCount: products.length,
         itemBuilder: (context, index) {
@@ -89,7 +91,9 @@ class _CategoryProductState extends State<CategoryProduct> {
                 subtitle: Text(products[index].name.toUpperCase(),style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold
-                ),),
+                ),
+                ),
+                isThreeLine:true,
               )
             ),
           );
