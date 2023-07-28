@@ -4,9 +4,9 @@ import 'package:racktech/homepage.dart';
 class productdetails extends StatelessWidget {
   final String image;
   final String name;
-  final String price;
+  final String description;
 
-  productdetails({Key? key, required this.image, required this.name,required this.price})
+  productdetails({Key? key, required this.image, required this.name,required this.description})
       : super(key: key);
 
   @override
@@ -25,36 +25,43 @@ class productdetails extends StatelessWidget {
         ),
       ),
       backgroundColor: Color(0xFF1B1919),
-      body: Column(
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              width: double.infinity,
-              child: Image(
-                image: NetworkImage(image),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //SizedBox(height: 20,),
+            AspectRatio(
+              aspectRatio: 1,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30),
+                    image: DecorationImage(
+                      image: NetworkImage(image),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(20.0),
-            child: Center(
-              child: Text(
-                name,
-                style: TextStyle(fontSize: 40),
-              ),
+            Container(
+              alignment: Alignment.centerLeft,
+              margin: const EdgeInsets.all(7.0),
+                child: Text(
+                  name.toUpperCase(),
+                  style: TextStyle(fontSize: 40),
+                ),
             ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(20.0),
-            child: Center(
-              child: Text(
-                price,
-                style: TextStyle(fontSize: 40),
-              ),
+            Container(
+              margin: const EdgeInsets.all(7.0),
+              alignment: Alignment.centerLeft,
+                child: Text(
+                  "Description: $description",
+                  style: TextStyle(fontSize: 25),
+                ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -83,8 +83,8 @@ class MyApp extends StatelessWidget {
 class PhotoItem {
   final String image;
   final String name;
-  final String price;
-  PhotoItem(this.image, this.name,this.price);
+  final String description;
+  PhotoItem(this.image, this.name,this.description);
 }
 
 final List<PhotoItem> _items = [
@@ -249,7 +249,8 @@ class _Page1State extends State<Page1> {
                     builder: (context) => productdetails(
                         image: _items[index].image,
                         name: _items[index].name,
-                        price: _items[index].price),
+                        description: _items[index].description
+                    ),
                   ),
                 );
               },

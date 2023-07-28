@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'ProductModel.dart';
+import 'package:racktech/productdetails.dart';
 
 class CategoryProduct extends StatefulWidget {
   final String category;
@@ -32,6 +33,7 @@ class _CategoryProductState extends State<CategoryProduct> {
           category: json['category'] as String,
           name: json['name'] as String,
           image: json['image'] as String,
+          description: json['description'] as String,
         )).toList();
         isLoading = false;
         isError = false;
@@ -84,6 +86,16 @@ class _CategoryProductState extends State<CategoryProduct> {
           return GestureDetector(
             onTap: () {
               // Implement navigation to product details screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => productdetails(
+                    image: products[index].image,
+                    name: products[index].name,
+                    description: products[index].description,
+                  ),
+                ),
+              );
             },
             child: Container(
               child: ListTile(
