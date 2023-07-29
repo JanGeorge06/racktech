@@ -1,5 +1,7 @@
 //import 'dart:js_util';
-
+import 'package:dio/dio.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:racktech/ProductModel.dart';
 import 'package:floating_navbar/floating_navbar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,8 @@ import 'package:racktech/category.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -124,17 +128,49 @@ class Homepage extends StatefulWidget {
   }
 }
 
+late List<Product> products;
+bool isLoading = true;
+bool isError = false;
+
 class HomepageScreen extends State<Homepage> {
   int selectedIndex = 0;
   bool firstpage = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+
+  Dio dio = Dio();
+
+  Future<void> sendGetRequest() async {
+    Map<String, dynamic> queryParams = {'best-seller': 'yes'};
+    String url = 'http://10.0.2.2:5000/products';
+
+    try {
+      Response response = await dio.get(url, queryParameters: queryParams);
+
+      setState(() {
+        products = (response.data as List<dynamic>).map((json) => Product(
+          category: json['category'] as String,
+          name: json['name'] as String,
+          image: json['image'] as String,
+          description: json['description'] as String,
+        )).toList();
+        isLoading = false;
+        isError = false;
+      });
+    } catch (e) {
+      print(e.toString());
+      setState(() {
+        isLoading = false;
+        isError = true;
+      });
+    }
+  }
+
   @override
   void initState() {
-    setState(() {
-      decodeToken();
-      debugPrint(email);
-    });
+    super.initState();
+    sendGetRequest();
+    decodeToken();
   }
 
 
@@ -207,17 +243,7 @@ class HomepageScreen extends State<Homepage> {
     );
   }
 }
-/////////// SECOND CODEEE ////////////////
-// List<String> images = [
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-//   "https://static.javatpoint.com/tutorial/flutter/images/flutter-logo.png",
-// ];
-////////////// END OF SECOND CODE ////////////
+
 class Page1 extends StatefulWidget {
   @override
   _Page1State createState() => _Page1State();
@@ -232,86 +258,47 @@ class _Page1State extends State<Page1> {
       //   child: Text('Page 1'),
       //),
       padding: EdgeInsets.all(12.0),
-      child: GridView.builder(
-          itemCount: _items.length,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 9.0,
-            mainAxisSpacing: 9.0,
-            mainAxisExtent: 200.0,
-          ),
-          itemBuilder: (BuildContext context, int index){
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => productdetails(
-                        image: _items[index].image,
-                        name: _items[index].name,
-                        description: _items[index].description
-                    ),
-                  ),
-                );
-              },
-              child: Container(
-                //alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                    fit: BoxFit.values.last,
-                    alignment: Alignment.topCenter,
-                    image: NetworkImage(_items[index].image),
+      child:  isLoading
+          ? Center(child: SpinKitThreeInOut(color: Colors.white,size:20,))
+          : isError
+          ? Center(child: Text('Error fetching products'))
+          : GridView.builder(
+        shrinkWrap: true,
+        physics:BouncingScrollPhysics(),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 6.0,
+          mainAxisSpacing: 20.0,
+        ),
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              // Implement navigation to product details screen
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => productdetails(
+                    image: products[index].image,
+                    name: products[index].name,
+                    description: products[index].description,
                   ),
                 ),
-                //alignment: Alignment.bottomRight,
-                child: Row(
-                  children: [
-                     Padding(
-                       padding: const EdgeInsets.fromLTRB(30.0, 125.0, 0, 10.0),
-                       child: Text(_items[index].name,
-                         style: TextStyle(fontSize: 19),),
-                     ),
-                    //Text(_items[index].price),
-                  ],
-                ),
-              ),
-            );
-            ////////////THE SECOND CODE////////////////
-            //return Image.network(images[index]);
-            // return Container(
-            //   alignment: Alignment.center,
-            //   decoration: BoxDecoration(
-            //     color: Colors.amber,
-            //     borderRadius: BorderRadius.circular(30),
-            //   ),
-            //   child: Container(
-            //     alignment: Alignment.center,
-            //     //padding: EdgeInsets.all(10.0),
-            //       //height: 260,
-            //       //width: 140,
-            //       //transformAlignment: Alignment.topRight,
-            //       child: Column(
-            //         children: [
-            //           Container(
-            //             //height: 120,
-            //             width: 130,
-            //             child: Image.network(images[index]),
-            //           ),
-            //           SizedBox(height: 20,),
-            //           Container(
-            //             child: Text("Data",textScaleFactor: 1.4,),
-            //
-            //           ),
-            //           //Text("data")
-            //         ],
-            //       )
-            //   ),
-            //   //child: Text("Products"),
-            // );
-            /////////////END OF THR SECOND CODE//////////////////
-          },
+              );
+            },
+            child: Container(
+                child: ListTile(
+                  title:Image.network(products[index].image, fit: BoxFit.cover),
+                  subtitle: Text(products[index].name.toUpperCase(),style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
+                  ),
+                  ),
+                  isThreeLine:true,
+                )
+            ),
+          );
+        },
       ),
     );
   }
