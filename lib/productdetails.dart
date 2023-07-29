@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:racktech/homepage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class productdetails extends StatelessWidget {
   final String image;
@@ -49,7 +50,13 @@ class productdetails extends StatelessWidget {
               margin: const EdgeInsets.all(7.0),
                 child: Text(
                   name.toUpperCase(),
-                  style: TextStyle(fontSize: 40),
+                  //style: TextStyle(fontSize: 40,),
+                  style: GoogleFonts.abrilFatface(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 40,
+                    fontWeight: FontWeight.w600,
+                    fontStyle: FontStyle.normal,
+                  ),
                 ),
             ),
             Container(
@@ -57,7 +64,13 @@ class productdetails extends StatelessWidget {
               alignment: Alignment.centerLeft,
                 child: Text(
                   "Description: $description",
-                  style: TextStyle(fontSize: 25),
+                  //style: TextStyle(fontSize: 25,),
+                  style: GoogleFonts.abel(
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w800,
+                    fontStyle: FontStyle.normal,
+                  ),
                 ),
             ),
           ],
